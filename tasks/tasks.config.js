@@ -40,9 +40,9 @@ module.exports = function(grunt){
             app: {
                 files: [{
                     expand: true,
-                    cwd: "build/css",
+                    cwd: "build/",
                     src: ["*.css", "!*.min.css"],
-                    dest: "build/css",
+                    dest: "build/",
                     ext: ".css"
                 }]
             }
@@ -57,29 +57,6 @@ module.exports = function(grunt){
                   src: "**/*.js",
                   dest: "build/app"
               }]
-            }
-        },
-
-        // image minificaiton
-        image: {
-            options: {
-                pngquant: true,
-                optipng: false,
-                zopflipng: true,
-                advpng: true,
-                jpegRecompress: false,
-                jpegoptim: true,
-                mozjpeg: true,
-                gifsicle: true,
-                svgo: true
-            },
-            build: {
-                files: [{
-                    expand: true,
-                    cwd: "build/",
-                    src: ["**/*.{png,jpg,gif}"],
-                    dest: "build/"
-                }]
             }
         },
 
@@ -122,8 +99,8 @@ module.exports = function(grunt){
 
             js: {
 
-                src: "src/app/**/*.js",
-                exclude: ["src/app/app.js", "src/app/config.js"],
+                src: "src/**/*.js",
+                exclude: ["src/app.js", "src/config.js"],
                 options: {
                     breakOnErrors: false,
                     errorsOnly: false,
@@ -143,9 +120,9 @@ module.exports = function(grunt){
             app: {
                 files: [{
                     expand: true,
-                    cwd: "./src/css",
+                    cwd: "./src",
                     src: ["**/*.scss"],
-                    dest: "build/css",
+                    dest: "build/",
                     ext: ".css"
                 }]
             }
@@ -155,11 +132,24 @@ module.exports = function(grunt){
         watch: {
             scripts: {
                 files: ["src/**/*.*", "bower.json"],
-                tasks: ["javascript_lint", "css_lint", "html_lint", "copy_src", "scss_compile", "javascript_minify", "css_minify", "image_min", "analysis", "reload_extensions"],
+                tasks: ["javascript_lint", "css_lint", "copy_src", "scss_compile", "javascript_minify", "css_minify", "analysis"],
                 options: {
                     spawn: false,
                 },
             }
+        },
+
+        csslint: {
+
+            lax: {
+
+                options: {
+                    import: false
+                },
+                src: ["src/**/*.css"]
+
+            }
+
         }
 
     });
