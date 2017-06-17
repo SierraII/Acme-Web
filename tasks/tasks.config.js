@@ -23,9 +23,29 @@ module.exports = function(grunt){
                 verbose: true,
                 pretend: false,
                 failOnError: true,
-                ignoreInDest: "**/*.css",
+                ignoreInDest: "**/*.scss",
                 updateAndDelete: true
 
+            }
+        },
+
+        exec: {
+            echo_something: 'export FLASK_APP=./src/index.py && export FLASK_DEBUG=1 && python -m flask run'
+        },
+
+        concurrent: {
+            engine: {
+                tasks: ["exec", "open", "watch"],
+                options: {
+                    logConcurrentOutput: true
+                }
+            }
+        },
+
+        open : {
+            dev : {
+              path: "http://127.0.0.1:5000/",
+              app: "Google Chrome"
             }
         },
 
@@ -64,7 +84,8 @@ module.exports = function(grunt){
         jscs: {
             src: "src/**/*.js",
             options: {
-                config: "config/jscs.json"
+                config: "config/jscs.json",
+                excludeFiles: ["src/static/lib/**/*.js"]
             }
         },
 
@@ -94,27 +115,6 @@ module.exports = function(grunt){
             }
         },
 
-        // javascript completixy analysis
-        complexity: {
-
-            js: {
-
-                src: "src/**/*.js",
-                exclude: ["src/app.js", "src/config.js"],
-                options: {
-                    breakOnErrors: false,
-                    errorsOnly: false,
-                    cyclomatic: [3, 7, 12],
-                    halstead: [8, 13, 20],
-                    maintainability: 100,
-                    hideComplexFunctions: false,
-                    broadcast: false
-                }
-
-            }
-
-        },
-
         // compile scss into css
         sass: {
             app: {
@@ -132,7 +132,7 @@ module.exports = function(grunt){
         watch: {
             scripts: {
                 files: ["src/**/*.*", "bower.json"],
-                tasks: ["javascript_lint", "css_lint", "copy_src", "scss_compile", "javascript_minify", "css_minify", "analysis"],
+                tasks: ["javascript_lint", "css_lint", "copy_src", "scss_compile", "javascript_minify", "css_minify"],
                 options: {
                     spawn: false,
                 },
@@ -140,16 +140,12 @@ module.exports = function(grunt){
         },
 
         csslint: {
-
             lax: {
-
                 options: {
                     import: false
                 },
-                src: ["src/**/*.css"]
-
+                src: ["src/static/**/*.css", "!src/static/lib/**/*.css"]
             }
-
         }
 
     });

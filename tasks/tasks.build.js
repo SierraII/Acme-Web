@@ -3,8 +3,7 @@ var chalk = require("chalk");
 module.exports = function(grunt){
 
     grunt.registerTask("default", function(){
-        grunt.task.run("build");
-        grunt.task.run("watch");
+        grunt.task.run("concurrent");
     });
 
     grunt.registerTask("build", function(){
@@ -26,9 +25,6 @@ module.exports = function(grunt){
         grunt.task.run("javascript_minify");
         grunt.task.run("css_minify");
 
-        // complexity analysis
-        grunt.task.run("analysis");
-
     });
 
     // javascript minification task
@@ -36,14 +32,6 @@ module.exports = function(grunt){
 
         grunt.log.writeln(chalk.magenta.bold("Executing JavaScript Minification And Concatination Process."));
         grunt.task.run("newer:uglify");
-
-    });
-
-    // javascript linting task
-    grunt.registerTask("analysis", function(){
-
-        grunt.log.writeln(chalk.magenta.bold("Analysing JavaScript."));
-        grunt.task.run("complexity");
 
     });
 
