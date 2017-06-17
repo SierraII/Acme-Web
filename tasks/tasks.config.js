@@ -1,7 +1,7 @@
 /* -------------------------------------------------------------------- */
 /*
     Config Init
-    Copyright: Adrian David Smith 2016
+    Copyright: Adrian David Smith 2017
 */
 /* -------------------------------------------------------------------- */
 
@@ -85,11 +85,9 @@ module.exports = function(grunt){
 
         // javascript lint
         jscs: {
-            src: "src/app/**/*.js",
+            src: "src/**/*.js",
             options: {
-                config: "config/jscs.json",
-                esnext: true,
-                verbose: true
+                config: "config/jscs.json"
             }
         },
 
@@ -162,7 +160,7 @@ module.exports = function(grunt){
                     spawn: false,
                 },
             }
-        },
+        }
 
     });
 
