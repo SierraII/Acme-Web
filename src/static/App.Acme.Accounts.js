@@ -24,7 +24,18 @@
 
         initialize : function(){
 
-            App.Acme.API.getUserAccount(15);
+            $.ajax({
+               url : "/viewAccount",
+               type : "GET",
+               data : { userID : "15" },
+               success : function(data){
+                   console.log(data);
+               },
+               error : function(data){
+                   console.log("error");
+               }
+           });
+
 
         }
 
@@ -39,9 +50,7 @@
 
 
     $(function(){
-
         App.Acme.Accounts.initialize();
-
     });
 
 

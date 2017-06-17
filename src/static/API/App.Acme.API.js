@@ -28,11 +28,14 @@
 
         getUserAccount : function(userID){
 
-            $.ajax({
+            var defer = $.Deferred();
+
+             $.ajax({
                 url : "/viewAccount",
                 type : "GET",
                 data : { userID : userID },
                 success : function(data){
+                    defer.resolve(data);
                     console.log(data);
                 },
                 error : function(data){
