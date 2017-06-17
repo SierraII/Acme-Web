@@ -5,12 +5,12 @@
 
     /* -------------------------------------------------------------------- */
     /*
-            App.Accounts
+            App.Acme.Transactions
     */
     /* -------------------------------------------------------------------- */
 
 
-    App.namespace("App.Accounts");
+    App.namespace("App.Acme.Transactions");
 
 
     /* -------------------------------------------------------------------- */
@@ -20,22 +20,11 @@
     /* -------------------------------------------------------------------- */
 
 
-    App.Accounts = {
+    App.Acme.Transactions = {
 
         initialize : function(){
 
-            console.log("wtf");
-
-            $.ajax({
-                url : "/viewAccount",
-                type : "GET",
-                success : function(data){
-                    console.log(data);
-                },
-                error : function(data){
-                    console.log(data);
-                }
-            });
+            App.Acme.API.getUserAccount(15);
 
         }
 
@@ -51,7 +40,7 @@
 
     $(function(){
 
-        App.Accounts.initialize();
+        App.Acme.Transactions.initialize();
 
     });
 

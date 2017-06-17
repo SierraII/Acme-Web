@@ -1,13 +1,105 @@
 <html>
 
     <head>
-        <script src="./lib/jQuery/dist/jquery.min.js"></script>
-        <script src="app.js"></script>
-        <script src="accounts.js"></script>
+
+        <script src="/lib/jQuery/dist/jquery.min.js"></script>
+
+        <!--  bootstrap -->
+        <script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+
+        <!--  styles -->
+        <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+
+        <script src="/App.js"></script>
+        <script src="/App.Acme.Accounts.js"></script>
+        <script src="/API/App.Acme.API.js"></script>
+
     </head>
 
     <body>
-        <h1>qwerqwer</h1>
+
+        <nav class="navbar navbar-inverse">
+
+            <div class="container-fluid">
+
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">ACME</a>
+                </div>
+
+                <ul class="nav navbar-nav">
+                    <li><a href="/my-account">My Accounts</a></li>
+                    <li><a href="/transactions">Transaction History</a></li>
+                </ul>
+
+            </div>
+
+        </nav>
+
+        <div class="main-content">
+
+            <table class="table">
+
+                <thead>
+                    <tr>
+                    <th>Account Number</th>
+                    <th>Created Date</th>
+                    <th>Type</th>
+                    <th>Balance</th>
+                    <th>Overdraft Limit</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Default</td>
+                        <td>Defaultson</td>
+                        <td>def@somemail.com</td>
+                        <td>Defaultson</td>
+                        <td>Defaultson</td>
+                    </tr>
+                    <tr class="success">
+                        <td>Success</td>
+                        <td>Doe</td>
+                        <td>john@example.com</td>
+                        <td>john@example.com</td>
+                        <td>Defaultson</td>
+                    </tr>
+                    <tr class="danger">
+                        <td>Danger</td>
+                        <td>Moe</td>
+                        <td>mary@example.com</td>
+                        <td>john@example.com</td>
+                        <td>Defaultson</td>
+                    </tr>
+                    <tr class="info">
+                        <td>Info</td>
+                        <td>Dooley</td>
+                        <td>july@example.com</td>
+                        <td>john@example.com</td>
+                        <td>Defaultson</td>
+                    </tr>
+                    <tr class="warning">
+                        <td>Warning</td>
+                        <td>Refs</td>
+                        <td>bo@example.com</td>
+                        <td>john@example.com</td>
+                        <td>Defaultson</td>
+                    </tr>
+                    <tr class="active">
+                        <td>Active</td>
+                        <td>Activeson</td>
+                        <td>act@example.com</td>
+                        <td>john@example.com</td>
+                        <td>Defaultson</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
     </body>
 
 </html>
