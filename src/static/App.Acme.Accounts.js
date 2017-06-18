@@ -39,13 +39,21 @@
             });
 
             $(document).on("click", "#withdraw", function(){
-                var accountNumber = $(this).data("account-number");
+                self.accountNumber = $(this).data("account-number");
                 $("#withdraw-modal").modal("toggle");
             });
 
             $(document).on("click", "#deposit", function(){
-                var accountNumber = $(this).data("account-number");
+                self.accountNumber = $(this).data("account-number");
                 $("#deposit-modal").modal("toggle");
+            });
+
+            $(document).on("click", "#deposit-confirm", function(){
+                console.log("here");
+            });
+
+            $(document).on("click", "#withdraw-confirm", function(){
+                console.log("here");
             });
 
         },

@@ -47,10 +47,14 @@
                     </div>
 
                     <div class="modal-body">
-                        <p>Some text in the modal.</p>
+                        <div class="form-group">
+                            <label for="amount">Amount:</label>
+                            <input type="text" autofocus class="form-control" placeholder="R" id="amount">
+                        </div>
                     </div>
 
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="withdraw-confirm" data-dismiss="modal">Withdraw</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -71,10 +75,14 @@
                     </div>
 
                     <div class="modal-body">
-                        <p>deposit.</p>
+                        <div class="form-group">
+                            <label for="amount">Amount:</label>
+                            <input type="text" autofocus class="form-control" placeholder="R" id="amount">
+                        </div>
                     </div>
 
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-info" id="deposit-confirm" data-dismiss="modal">Deposit</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -85,8 +93,16 @@
 
         <div class="main-content">
 
-            <div class="alert alert-danger error-message">
+            <div class="alert alert-danger error-message message hidden">
                 <strong>Error!</strong> An Error Occured
+            </div>
+
+            <div class="alert alert-info info-message message hidden">
+                Transaction in progress...
+            </div>
+
+            <div class="alert alert-success success-message message hidden">
+                Success!
             </div>
 
             <div class="loader-container">
