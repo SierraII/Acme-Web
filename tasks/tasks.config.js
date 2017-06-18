@@ -135,19 +135,10 @@ module.exports = function(grunt){
         watch: {
             scripts: {
                 files: ["src/**/*.*", "bower.json"],
-                tasks: ["javascript_lint", "css_lint", "copy_src", "scss_compile", "javascript_minify", "css_minify"],
+                tasks: ["javascript_lint", "copy_src", "scss_compile", "javascript_minify", "css_minify"],
                 options: {
                     spawn: false,
                 },
-            }
-        },
-
-        csslint: {
-            lax: {
-                options: {
-                    import: false
-                },
-                src: ["src/static/**/*.css", "!src/static/lib/**/*.css"]
             }
         }
 

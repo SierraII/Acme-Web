@@ -45,12 +45,7 @@ def root():
     return app.send_static_file('index.html')
 
 
-@app.route('/my-account/')
-def my_acocunt():
-    return app.send_static_file('my-account.html')
-
-
-@app.route('/viewAccount', methods=['GET'])
+@app.route('/accountsList', methods=['GET'])
 def view_acocunt():
     return Response(json.dumps(accounts),  mimetype='application/json')
 

@@ -27,9 +27,9 @@
             var self = this;
 
             $.ajax({
-                url : "/viewAccount",
+                url : "/accountsList",
                 type : "GET",
-                data : { userID : "15" },
+                data : {},
                 success : function(data){
                     self.displayAccounts(data);
                 },
@@ -60,6 +60,14 @@
                 }
 
                 $("#deposit-modal").modal("toggle");
+
+            });
+
+            $(document).on("click", "#history", function(){
+
+                self.account = $(this).data("account");
+
+                $("#history-modal").modal("toggle");
 
             });
 
@@ -246,7 +254,8 @@
                 // this can be changed for a live environment
                 html += "<td>" +
                         "<button type='button' id='withdraw' data-account='" + JSON.stringify(account) + "' class='btn btn-primary'>Withdraw</button> " +
-                        "<button type='button' id='deposit' data-account='" + JSON.stringify(account) + "' class='btn btn-info'>Deposit</button>" +
+                        "<button type='button' id='deposit' data-account='" + JSON.stringify(account) + "' class='btn btn-info'>Deposit</button> " +
+                        "<button type='button' id='history' data-account='" + JSON.stringify(account) + "' class='btn btn-default'>History</button>" +
                         "</td>";
 
                 html+= "</tr>";

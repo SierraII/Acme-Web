@@ -12,7 +12,6 @@ module.exports = function(grunt){
 
         // lint
         grunt.task.run("javascript_lint");
-        grunt.task.run("css_lint");
 
         // bower install
         grunt.task.run("bower");
@@ -42,14 +41,6 @@ module.exports = function(grunt){
         grunt.task.run("newer:jscs");
 
     });
-
-    // css linting task
-   grunt.registerTask("css_lint", function(){
-
-       grunt.log.writeln(chalk.magenta.bold("Checking CSS Code Style."));
-       grunt.task.run("newer:csslint");
-
-   });
 
    // bower install task
    grunt.registerTask("bower", function(){
