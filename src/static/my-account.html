@@ -9,11 +9,10 @@
         <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
 
         <!--  styles -->
-        <link rel="stylesheet" href="/UI/my-account.css">
+        <link rel="stylesheet" href="/UI/styles.css">
 
         <script src="/App.js"></script>
         <script src="/App.Acme.Accounts.js"></script>
-        <script src="/API/App.Acme.API.js"></script>
 
     </head>
 
@@ -36,8 +35,84 @@
 
         </nav>
 
+        <div id="withdraw-modal" class="modal fade" role="dialog">
+
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Withdraw</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="deposit-modal" class="modal fade" role="dialog">
+
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Deposit</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <p>deposit.</p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
         <div class="main-content">
-            My Accounts
+
+            <div class="alert alert-danger error-message">
+                <strong>Error!</strong> An Error Occured
+            </div>
+
+            <div class="loader-container">
+                <div class="loader"></div>
+                <h6>loading...</h6>
+            </div>
+
+            <table class="table loading" id="my-accounts">
+
+                <thead>
+                    <tr>
+                    <th>Account Number</th>
+                    <th>Created Date</th>
+                    <th>Type</th>
+                    <th>Balance</th>
+                    <th>Overdraft Limit</th>
+                    <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="my-accounts-body">
+                    <!--  dynamic html -->
+                </tbody>
+
+            </table>
+
         </div>
 
     </body>

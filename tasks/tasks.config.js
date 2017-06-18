@@ -122,9 +122,12 @@ module.exports = function(grunt){
                     expand: true,
                     cwd: "./src/",
                     src: ["**/*.scss"],
-                    dest: "build/",
+                    dest: "src/",
                     ext: ".css"
-                }]
+                }],
+                options: {
+                    sourcemap: "none"
+                }
             }
         },
 

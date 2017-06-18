@@ -1,0 +1,59 @@
+
+.navbar{
+    border-radius:0px;
+}
+
+.main-content{
+
+    text-align:center;
+    padding:15px;
+
+    .error-message{
+
+        transition:all 0.5s linear;
+
+        &.hidden{
+            display:none;
+        }
+
+    }
+
+    .table{
+
+        transition:all 0.5s linear;
+        opacity:1;
+
+        &.loading{
+            transition:all 0.5s linear;
+            opacity:0;
+        }
+
+    }
+
+    .loader-container{
+
+        margin:0 auto;
+        width:50px;
+
+        .loader{
+            animation: spin 2s linear infinite;
+            border: 2px solid #f3f3f3;
+            transition:all 0.5s linear;
+            border-top: 2px solid #3498db;
+            border-radius: 50%;
+            height: 50px;
+            width: 50px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        &.hidden{
+            display:none;
+        }
+
+    }
+
+}
