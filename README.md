@@ -4,9 +4,9 @@ Bank System
 
 ## Overview:
 I have created a Grunt file to build and package this application as an extra. The build process currently only points to the 
-src folder as a dev environment. It compiles, lints and builds all Javascript and SCSS files into the src folder and the build folder. 
+src folder as a dev environment. It compiles, lints and builds all Javascript and SCSS files into the src folder and the build folder. Bower is used for dependancy management and I used Jquery and Bootstrap for this project.
 
-I ran into issues with the light Flask server I used for handling server-side requests where after syncing the index.py into a build fodler, 
+I ran into issues with the light Flask server I wrote for handling server-side requests where after syncing the index.py into a build fodler, 
 the server would not reflect the changes until the server was restarted, so I stuck with having the local server point to the src folder and not the final build folder. 
 
 ## Notes
