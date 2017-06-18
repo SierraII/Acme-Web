@@ -70,17 +70,24 @@
                 var error = "";
 
                 if(isNaN(amount)){
+
                     error = "Please insert valid number";
                     valid = false;
+
                 }
 
                 if(valid === true){
+
                     self.deposit(amount);
+
                     $("#deposit-modal").modal("toggle");
+
                 }
                 else{
+
                     $("#deposit-error").removeClass("hidden");
                     $("#deposit-error").html(error);
+
                 }
 
             });
@@ -92,8 +99,10 @@
                 var error = "";
 
                 if(isNaN(amount)){
+
                     error = "Please insert valid number";
                     valid = false;
+
                 }
 
                 if(self.account["type"] === "current"){
@@ -119,19 +128,24 @@
                 }
 
                 if(valid === true){
+
                     self.withdraw(amount);
+
                     $("#withdraw-modal").modal("toggle");
+
                 }
                 else{
+
                     $("#withdraw-error").removeClass("hidden");
                     $("#withdraw-error").html(error);
+
                 }
 
             });
 
         },
 
-        deposit: function(amount){
+        deposit : function(amount){
 
             var self = this;
 
@@ -142,8 +156,10 @@
                 type : "PUT",
                 data : { account_number : self.account.account_number, amount : amount },
                 success : function(data){
+
                     self.displaySuccessMessage("Success");
                     self.reloadAccounts();
+
                 },
                 error : function(data){
                     self.displayErrorMessage(data);
@@ -152,7 +168,7 @@
 
         },
 
-        withdraw: function(amount){
+        withdraw : function(amount){
 
             var self = this;
 
@@ -163,8 +179,10 @@
                 type : "PUT",
                 data : { account_number : self.account.account_number, amount : amount },
                 success : function(data){
+
                     self.displaySuccessMessage("Success");
                     self.reloadAccounts();
+
                 },
                 error : function(data){
                     self.displayErrorMessage(data);

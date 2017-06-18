@@ -6,12 +6,15 @@
   padding: 15px; }
   .main-content .message {
     transition: all 1.5s linear;
+    margin: 0 auto;
+    width: 50%;
     opacity: 1; }
     .main-content .message.hidden {
       transition: all 1.5s linear;
       opacity: 0; }
   .main-content .table {
     transition: all 0.5s linear;
+    margin: 25px 0 0 0;
     opacity: 1; }
     .main-content .table.loading {
       transition: all 0.5s linear;
