@@ -67,6 +67,18 @@
 
                 self.account = $(this).data("account");
 
+                $.ajax({
+                    url : "/viewAccount",
+                    type : "GET",
+                    data : { account_number : self.account["account_number"] },
+                    success : function(data){
+                        self.createTransactionHistory(data);
+                    },
+                    error : function(data){
+                        self.displayErrorMessage(data);
+                    }
+                });
+
                 $("#history-modal").modal("toggle");
 
             });
@@ -153,6 +165,32 @@
 
         },
 
+        createTransactionHistory : function(data){
+
+            var html = "";
+
+            for(var i = 0; i < data.transactions.length; i++){
+
+                var transaction = data.transactions[i];
+                var classStyle = "info";
+
+                if(transaction["type"] === "withdraw"){
+                    classStyle = "bg-primary";
+                }
+
+                html += "<tr class='" + classStyle + "'>" +
+                            "<td class='col-xs-4'>" + transaction["date"] + "</td>" +
+                            "<td class='col-xs-2'>" + transaction["type"] + "</td>" +
+                            "<td class='col-xs-3'> R" + transaction["balance"] + "</td>" +
+                            "<td class='col-xs-3'> R" + transaction["amount"] + "</td>" +
+                        "</tr>";
+
+            }
+
+            $("#transactions-table").html(html);
+
+        },
+
         deposit : function(amount){
 
             var self = this;
@@ -206,9 +244,9 @@
             $("#my-accounts-body").html("");
 
             $.ajax({
-                url : "/viewAccount",
+                url : "/accountsList",
                 type : "GET",
-                data : { userID : "15" },
+                data : {},
                 success : function(data){
                     self.displayAccounts(data);
                 },

@@ -51,8 +51,8 @@ def view_acocunts():
 
 
 @app.route('/viewAccount', methods=['GET'])
-def view_accout():
-    account_number = int(request.form['account_number'])
+def view_account():
+    account_number = int(request.args.get('account_number'))
     acc = {};
 
     for account in accounts:
@@ -77,6 +77,9 @@ def deposit():
             transaction = {}
             transaction['amount'] = amount
             transaction['type'] = 'deposit'
+            transaction['balance'] = account['balance']
+            transaction['date'] = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+
 
             # add transaction
             account['transactions'].append(transaction)
@@ -101,7 +104,9 @@ def withdraw():
 
             transaction = {}
             transaction['amount'] = amount
-            transaction['type'] = 'deposit'
+            transaction['type'] = 'withdraw'
+            transaction['balance'] = account['balance']
+            transaction['date'] = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
             # add transaction
             account['transactions'].append(transaction)
