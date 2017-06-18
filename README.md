@@ -16,6 +16,8 @@ purely on my front-end skills.
 
 I have included a setup.sh script that contains all of the setup scripts needed to get the local environment up and running. If there are any issues, please don't hesitate to ask any questions. 
 
+Python and Node.js needs to be installed.
+
 ## Improvements
 There are a number of ways this project can be improved. Currently there is very little structure and there is no templating. 
 It would be ideal to have incorporated Jinja or another template level language and have one main template any and all other pages could extend off of. 
@@ -25,3 +27,5 @@ that are used all over the place and having a module that pusposely handles the 
 
 ## Screenshots
 
+<img src="https://github.com/SierraII/Acme-Web/blob/master/screenshots/1.png" alt=""/>
+<img src="https://github.com/SierraII/Acme-Web/blob/master/screenshots/2.png" alt=""/>
