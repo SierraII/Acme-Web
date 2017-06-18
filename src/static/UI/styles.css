@@ -4,9 +4,9 @@
 .main-content {
   text-align: center;
   padding: 15px; }
-  .main-content .error-message {
+  .main-content .message {
     transition: all 0.5s linear; }
-    .main-content .error-message.hidden {
+    .main-content .message.hidden {
       display: none; }
   .main-content .table {
     transition: all 0.5s linear;
