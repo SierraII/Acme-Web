@@ -65,18 +65,17 @@
 
             $(document).on("click", "#deposit-confirm", function(){
 
+                var amount = parseInt($("#deposit-amount").val());
                 var valid = true;
                 var error = "";
-                var amount = parseInt($("#deposit-amount").val());
 
                 if(isNaN(amount)){
                     error = "Please insert valid number";
                     valid = false;
                 }
 
-                // validate here
-
                 if(valid === true){
+                    self.deposit(amount);
                     $("#deposit-modal").modal("toggle");
                 }
                 else{
@@ -88,16 +87,39 @@
 
             $(document).on("click", "#withdraw-confirm", function(){
 
+                var amount = parseInt($("#withdraw-amount").val());
                 var valid = true;
                 var error = "";
-                var amount = parseInt($("#withdraw-amount").val());
 
                 if(isNaN(amount)){
                     error = "Please insert valid number";
                     valid = false;
                 }
 
+                if(self.account["type"] === "current"){
+
+                    if((self.account["overdraft_limit"] + self.account["balance"]) < amount){
+
+                        error = "Can not withdraw more than current and overdraft limit.";
+                        valid = false;
+
+                    }
+
+                }
+
+                if(self.account["type"] === "savings"){
+
+                    if((self.account["balance"] - amount) < 1000){
+
+                        error = "Savings account needs a minimum of R1000.00";
+                        valid = false;
+
+                    }
+
+                }
+
                 if(valid === true){
+                    self.withdraw(amount);
                     $("#withdraw-modal").modal("toggle");
                 }
                 else{
@@ -106,6 +128,70 @@
                 }
 
             });
+
+        },
+
+        deposit: function(amount){
+
+            var self = this;
+
+            self.displayInfoMessage("Depositing...");
+
+            $.ajax({
+                url : "/deposit",
+                type : "PUT",
+                data : { account_number : self.account.account_number, amount : amount },
+                success : function(data){
+                    self.displaySuccessMessage("Success");
+                    self.reloadAccounts();
+                },
+                error : function(data){
+                    self.displayErrorMessage(data);
+                }
+            });
+
+        },
+
+        withdraw: function(amount){
+
+            var self = this;
+
+            self.displayInfoMessage("Withdrawing...");
+
+            $.ajax({
+                url : "/withdraw",
+                type : "PUT",
+                data : { account_number : self.account.account_number, amount : amount },
+                success : function(data){
+                    self.displaySuccessMessage("Success");
+                    self.reloadAccounts();
+                },
+                error : function(data){
+                    self.displayErrorMessage(data);
+                }
+            });
+
+        },
+
+        reloadAccounts : function(){
+
+            var self = this;
+
+            $("#my-accounts-body").html("");
+
+            $.ajax({
+                url : "/viewAccount",
+                type : "GET",
+                data : { userID : "15" },
+                success : function(data){
+                    self.displayAccounts(data);
+                },
+                error : function(data){
+                    self.displayErrorMessage(data);
+                }
+            });
+
+            $("#my-accounts").addClass("loading");
 
         },
 
@@ -137,7 +223,9 @@
                     html += "<td> -- </td>";
                 }
 
-                // buttons with account number id
+                // one should never parse such sensitive information into a view
+                // the only reason why I am is for time constraint to get validation client side later on
+                // this can be changed for a live environment
                 html += "<td>" +
                         "<button type='button' id='withdraw' data-account='" + JSON.stringify(account) + "' class='btn btn-primary'>Withdraw</button> " +
                         "<button type='button' id='deposit' data-account='" + JSON.stringify(account) + "' class='btn btn-info'>Deposit</button>" +
@@ -156,8 +244,56 @@
 
         },
 
-        displayErrorMessage : function(error){
-            console.log(error);
+        displayErrorMessage : function(message){
+
+            var self = this;
+
+            $(".message").removeClass("alert-info alert-success");
+            $(".message").html(message);
+            $(".message").addClass("alert-error");
+            $(".message").removeClass("hidden");
+
+            setTimeout(function(){
+                self.hideMessage();
+            }, 5000);
+
+        },
+
+        displaySuccessMessage : function(message){
+
+            var self = this;
+
+            $(".message").removeClass("alert-error alert-info");
+            $(".message").html(message);
+            $(".message").addClass("alert-success");
+            $(".message").removeClass("hidden");
+
+            setTimeout(function(){
+                self.hideMessage();
+            }, 5000);
+
+        },
+
+        displayInfoMessage : function(message){
+
+            var self = this;
+
+            $(".message").removeClass("alert-error alert-success");
+            $(".message").html(message);
+            $(".message").addClass("alert-info");
+            $(".message").removeClass("hidden");
+
+            setTimeout(function(){
+                self.hideMessage();
+            }, 5000);
+
+        },
+
+        hideMessage : function(){
+
+            if(!$(".message").is(".hidden")){
+                $(".message").addClass("hidden");
+            }
         }
 
     };
