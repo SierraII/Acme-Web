@@ -46,8 +46,21 @@ def root():
 
 
 @app.route('/accountsList', methods=['GET'])
-def view_acocunt():
+def view_acocunts():
     return Response(json.dumps(accounts),  mimetype='application/json')
+
+
+@app.route('/viewAccount', methods=['GET'])
+def view_accout():
+    account_number = int(request.form['account_number'])
+    acc = {};
+
+    for account in accounts:
+        if account['account_number'] == account_number:
+            acc = account
+            break
+
+    return Response(json.dumps(acc),  mimetype='application/json')
 
 
 @app.route('/deposit', methods=['PUT'])
